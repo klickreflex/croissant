@@ -1,4 +1,4 @@
-# Croissant
+# Croissant 🥐
 
 A [CUBE CSS](https://cube.fyi/) starter kit for [Statamic](https://statamic.com/), built on [Peak](https://peak.1902.studio/) foundations.
 
