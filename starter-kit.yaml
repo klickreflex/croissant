@@ -26,6 +26,7 @@ export_paths:
   - public/robots.txt
   - public/visuals
   - public/page_builder
+  - public/branding
   - public/favicons
   - public/social_images
   - public/images

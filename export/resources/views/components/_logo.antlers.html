@@ -1,13 +1,15 @@
 {{#
     @name Logo
-    @desc The logo component with a `width` attribute.
+    @desc The logo component. Reads the logo asset from the configuration global.
 #}}
 
 <!-- /components/_logo.antlers.html -->
-<a
-    aria-label="{{ trans:strings.home }}"
-    href="{{ site:url }}"
->
-    <img src="/visuals/croissant-logo.svg" class="select-none {{ class }}" width="{{ width }}" alt="" aria-hidden="true"/>
-</a>
+{{ configuration:logo }}
+    <a
+        href="{{ site:url }}"
+        class="logo-link"
+    >
+        <img src="{{ url }}" width="{{ width }}" height="{{ height }}" class="select-none {{ class }}" alt="{{ config:app:name }}" aria-hidden="true"/>
+    </a>
+{{ /configuration:logo }}
 <!-- End: /components/_logo.antlers.html -->

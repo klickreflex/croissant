@@ -99,6 +99,15 @@ return [
             'throw' => false,
             'report' => false,
         ],
+
+        'branding' => [
+            'driver' => 'local',
+            'root' => public_path('branding'),
+            'url' => '/branding',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
     ],
 
     /*
