@@ -34,7 +34,6 @@ export default defineConfig(({ command, mode }) => {
         ],
         server: {
             open: env.APP_URL,
-            cors: true,
         }
     }
 });
