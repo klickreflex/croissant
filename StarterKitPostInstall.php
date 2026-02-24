@@ -52,10 +52,23 @@ class StarterKitPostInstall
 
     protected function loadFiles(): void
     {
-        $this->env = app('files')->get(base_path('.env.example'));
-        $this->system = app('files')->get(base_path('config/statamic/system.php'));
-        $this->contact = app('files')->get(base_path('resources/forms/contact.yaml'));
-        $this->sites = app('files')->get(base_path('resources/sites.yaml'));
+        $files = app('files');
+
+        $this->env = $files->exists(base_path('.env.example'))
+            ? $files->get(base_path('.env.example'))
+            : '';
+
+        $this->system = $files->exists(base_path('config/statamic/system.php'))
+            ? $files->get(base_path('config/statamic/system.php'))
+            : '';
+
+        $this->contact = $files->exists(base_path('resources/forms/contact.yaml'))
+            ? $files->get(base_path('resources/forms/contact.yaml'))
+            : '';
+
+        $this->sites = $files->exists(base_path('resources/sites.yaml'))
+            ? $files->get(base_path('resources/sites.yaml'))
+            : '';
     }
 
     protected function overwriteEnvWithPresets(): void
@@ -121,6 +134,10 @@ class StarterKitPostInstall
 
     protected function setLocale(): void
     {
+        if (! $this->sites) {
+            return;
+        }
+
         $locale = text(
             label: 'What should be the default site locale?',
             placeholder: 'en_US',
@@ -337,9 +354,19 @@ class StarterKitPostInstall
 
     protected function writeFiles(): void
     {
-        app('files')->put(base_path('config/statamic/system.php'), $this->system);
-        app('files')->put(base_path('resources/forms/contact.yaml'), $this->contact);
-        app('files')->put(base_path('resources/sites.yaml'), $this->sites);
+        $files = app('files');
+
+        if ($this->system) {
+            $files->put(base_path('config/statamic/system.php'), $this->system);
+        }
+
+        if ($this->contact) {
+            $files->put(base_path('resources/forms/contact.yaml'), $this->contact);
+        }
+
+        if ($this->sites) {
+            $files->put(base_path('resources/sites.yaml'), $this->sites);
+        }
     }
 
     protected function finish(): void

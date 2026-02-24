@@ -10,6 +10,7 @@ export_paths:
   - resources/js
   - resources/svg
   - resources/users
+  - resources/sites.yaml
   - content
   - config/statamic
   - package.json
