@@ -17,6 +17,7 @@ export_paths:
   - config/filesystems.php
   - app/Listeners
   - app/Policies
+  - StarterKitPostInstall.php
   - .env.example
   - .editorconfig
   - public/page_builder
