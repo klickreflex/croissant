@@ -1,0 +1,18 @@
+{
+	"title": "Text Weights",
+	"description": "Font weight values matching the site's current weight definitions.",
+	"items": [
+		{
+			"name": "Normal",
+			"value": 400
+		},
+		{
+			"name": "Medium",
+			"value": 500
+		},
+		{
+			"name": "Bold",
+			"value": 700
+		}
+	]
+}

@@ -1,0 +1,68 @@
+/*
+FLUID GRID
+A full-viewport-width grid with named lines that provides a centered
+12-column content area flanked by flexible side gutters. Children
+choose their own width tier via span-* classes.
+
+Adapted from Statamic Peak's fluid grid.
+https://peak.1902.studio/features/fluid-grid.html
+
+NAMED GRID LINES
+full-start ................. full-end     → viewport edges
+content-start / content-end              → 12-column content area
+col-1 through col-12                     → individual column markers
+
+CUSTOM PROPERTIES
+--col-gap (clamp(1rem, 3vw, 4rem)): Gap between columns.
+--content-max-width (--breakpoint-xl): Maximum width of the content area.
+*/
+.fluid-grid {
+	--col-gap: clamp(1rem, 3vw, 4rem);
+	--spacing-fluid-grid-gap: var(--col-gap);
+	--content-max-width: var(--breakpoint-xl);
+	--col-width: calc((min(calc(100% - var(--padding-left) - var(--padding-right) - 2 * var(--col-gap)), var(--content-max-width)) - 11 * var(--col-gap)) / 12);
+	--padding-left: calc(env(safe-area-inset-left, 0rem) + max(0rem, 1rem - var(--col-gap)));
+	--padding-right: calc(env(safe-area-inset-right, 0rem) + max(0rem, 1rem - var(--col-gap)));
+	--side-width: minmax(0, 1fr);
+	display: grid;
+	column-gap: var(--col-gap);
+	grid-template-columns: [full-start] var(--side-width) [content-start col-1] var(--col-width) [col-2] var(--col-width) [col-3] var(--col-width) [col-4] var(--col-width) [col-5] var(--col-width) [col-6] var(--col-width) [col-7] var(--col-width) [col-8] var(--col-width) [col-9] var(--col-width) [col-10] var(--col-width) [col-11] var(--col-width) [col-12] var(--col-width) [content-end] var(--side-width) [full-end];
+}
+
+/* Span classes: children pick their width tier. All start at full
+   content width on small screens and narrow responsively. */
+.span-md {
+	grid-column: content;
+
+	@media (min-width: theme(--breakpoint-md)) {
+		grid-column: col-3 / span 8;
+	}
+
+	@media (min-width: theme(--breakpoint-lg)) {
+		grid-column: col-4 / span 6;
+	}
+}
+
+.span-lg {
+	grid-column: content;
+
+	@media (min-width: theme(--breakpoint-md)) {
+		grid-column: col-2 / span 10;
+	}
+
+	@media (min-width: theme(--breakpoint-lg)) {
+		grid-column: col-3 / span 8;
+	}
+}
+
+.span-xl {
+	grid-column: content;
+
+	@media (min-width: theme(--breakpoint-md)) {
+		grid-column: col-1 / span 12;
+	}
+
+	@media (min-width: theme(--breakpoint-lg)) {
+		grid-column: col-2 / span 10;
+	}
+}

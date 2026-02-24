@@ -1,0 +1,30 @@
+:root {
+	--gutter: var(--spacing-s-l);
+	--transition-base: 250ms ease;
+	--transition-movement: 200ms linear;
+	--transition-fade: 300ms ease;
+	--transition-bounce: 500ms cubic-bezier(0.5, 0.05, 0.2, 1.5);
+	--stroke-width: 1px;
+	--stroke: var(--stroke-width) dashed var(--color-neutral-400);
+	--stroke-solid: var(--stroke-width) solid var(--color-neutral-400);
+	--radius-s: 0.2rem;
+	--radius-m: 0.75rem;
+	--radius-l: 2.5rem;
+	--uppercase-kerning: 0.04ch;
+
+	/* Focus styles from Peak */
+	--focus-outline-width: 2px;
+	--focus-outline-offset: 3px;
+	--focus-outline-color: currentColor;
+	--focus-outline-style: dotted;
+	--focus-form-outline-width: 3px;
+	--focus-form-outline-offset: 0;
+	--focus-form-outline-color: color-mix(in oklab, var(--color-primary) 50%, transparent);
+	--focus-form-outline-style: solid;
+
+	/* Safari resize fix. */
+	min-height: 0vw;
+
+	/* Spacing */
+	--spacing-safe: calc(env(safe-area-inset-bottom, 0rem) + 2rem);
+}

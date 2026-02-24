@@ -1,0 +1,9 @@
+/* The page builder wrapper styles. */
+.page-builder {
+    padding-block: var(--spacing-l);
+	--flow-space: var(--spacing-xl);
+
+	> * + * {
+		margin-block-start: var(--flow-space);
+	}
+}

@@ -1,0 +1,26 @@
+/*
+SIDEBAR
+More info: https://every-layout.dev/layouts/sidebar/
+A layout with a flexible main content area and a "fixed" width sidebar.
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--spacing-s-l)): Space between sidebar and main.
+--sidebar-target-width (20rem): Sidebar width.
+--sidebar-content-min-width (50%): Minimum main content width.
+*/
+.sidebar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gutter, var(--spacing-s-l));
+}
+
+.sidebar > :first-child {
+	flex-grow: 1;
+	flex-basis: var(--sidebar-target-width, 20rem);
+}
+
+.sidebar > :last-child {
+	flex-grow: 999;
+	flex-basis: 0;
+	min-width: var(--sidebar-content-min-width, 50%);
+}

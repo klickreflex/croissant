@@ -1,0 +1,25 @@
+{{#
+    @name noscript
+    @desc Disable the hiding of x-cloak elements when a user doesn't have Javascript enabled so content is still accessible.
+    Ejected from Peak to align with CUBE token system.
+#}}
+
+<!-- statamic-peak-tools::snippets/_noscript.antlers.html -->
+{{ unless live_preview }}
+    <noscript>
+        <p class="relative z-50 py-xs px-s bg-info-light border-b border-neutral-200 text-center font-bold text-step--2 text-info">{{ trans:strings.no_script }}</p>
+    </noscript>
+
+    {{ push:head }}
+        <noscript>
+            <style>
+                nav.hidden,
+                nav ul [x-cloak],
+                nav ul li ul {
+                    display: block !important;
+                }
+            </style>
+        </noscript>
+    {{ /push:head }}
+{{ /unless }}
+<!-- End: statamic-peak-tools::snippets/_noscript.antlers.html -->

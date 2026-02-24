@@ -1,0 +1,93 @@
+{{#
+    @name Main mobile navigation
+    @desc The sites main mobile navigation rendered on each page. It's 2 levels deep by default and uses AlpineJS for interactivity.
+#}}
+
+<!-- /navigation/_main_mobile.antlers.html -->
+<nav
+    x-data="{ mobileNavOpen: false }"
+    class="md:hidden"
+    aria-label="{{ trans:strings.main_navigation_mobile }}"
+    x-trap.inert.noscroll.noautofocus="mobileNavOpen"
+    @keyup.escape.stop.prevent="mobileNavOpen = false"
+    x-cloak
+>
+    <button
+        @click.prevent.stop="mobileNavOpen = !mobileNavOpen"
+        class="fixed bottom-0 right-0 z-30 flex items-center justify-center w-[4rem] h-[4rem] mr-l text-step--1 font-bold text-white mb-safe rounded-sm bg-primary"
+        :aria-label="mobileNavOpen ? '{{ trans:strings.nav_close }}' : '{{ trans:strings.nav_open }}'"
+        :aria-expanded="mobileNavOpen"
+        x-text="mobileNavOpen ? '{{ trans:strings.close }}' : '{{ trans:strings.menu }}'"
+    ></button>
+
+    <div
+        class="fixed inset-0 z-20 pt-l px-l pb-xl flex flex-col justify-end bg-white"
+        x-show="mobileNavOpen"
+        x-transition.origin.bottom.right
+    >
+        <ul role="list" class="flex flex-col py-2xs gap-y-s overflow-auto">
+            {{ nav:main max_depth="2" include_home="true" select="title|url" }}
+                {{ unless no_results }}
+                    <li
+                        {{ if children }}
+                            x-data="{ subnavOpen: $root.querySelector('[aria-current=page]') ? true : false }"
+                            @focusin.window="!$refs.subnav.contains($event.target) && (subnavOpen = false)"
+                        {{ /if }}
+                        class="leading-none"
+                    >
+                        <a
+                            class="
+                                w-full py-2xs flex items-center gap-x-3xs text-step-1 font-bold hover:text-primary
+                                {{ is_current || is_parent ? 'text-primary' : 'text-dark' }}
+                            "
+                            {{ if children }}
+                                href="#"
+                                @click.prevent="subnavOpen = !subnavOpen"
+                                @click.outside="subnavOpen = false"
+                                :aria-label="subnavOpen ? '{{ trans:strings.subnav_close }}' : '{{ trans:strings.subnav_open }}'"
+                                :aria-expanded="subnavOpen"
+                            {{ else }}
+                                href="{{ url }}"
+                            {{ /if }}
+                            {{ is_current ?= 'aria-current="page"' }}
+                        >
+                            <span>{{ title }}</span>
+
+                            {{ if children }}
+                                <div :class="{ 'scale-y-[-1]': subnavOpen }" class="motion-safe:transition-transform">
+                                    {{ svg:chevron_down attr:class="w-[0.5rem] ml-[0.25rem] overflow-visible stroke-current text-dark" attr:aria-hidden="true" }}
+                                </div>
+                            {{ /if }}
+                        </a>
+
+                        {{ if children }}
+                            <ul
+                                role="list"
+                                x-show="subnavOpen"
+                                x-ref="subnav"
+                                class="flex flex-col items-stretch gap-y-2xs"
+                                x-collapse
+                            >
+                                {{ children }}
+                                    <li class="{{ first ?= 'mt-2xs' }}">
+                                        <a
+                                            class="
+                                                block py-2xs whitespace-nowrap font-bold hover:text-primary
+                                                {{ is_current || is_parent ? 'text-primary' : 'text-dark' }}
+                                            "
+                                            href="{{ url }}"
+                                            {{ is_current ?= 'aria-current="page"' }}
+                                        >
+                                            {{ title }}
+                                        </a>
+                                    </li>
+                                {{ /children }}
+                            </ul>
+                        {{ /if }}
+                    </li>
+                {{ /unless }}
+            {{ /nav:main }}
+        </ul>
+    </div>
+</nav>
+<!-- End: /navigation/_main_mobile.antlers.html -->

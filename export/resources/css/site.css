@@ -1,0 +1,65 @@
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+
+@theme {
+	/* Remove Tailwind defaults — replaced by token-generated theme */
+	--color-*: initial;
+	--spacing-*: initial;
+	--breakpoint-*: initial;
+	--font-*: initial;
+	--font-weight-*: initial;
+	--text-*: initial;
+	--leading-*: initial;
+
+	--spacing-gutter: var(--gutter);
+	--spacing-fluid-grid-gap: 0;
+}
+
+@import './theme.css' layer(theme);
+
+@import './global/reset.css' layer(base);
+@import './global/fonts.css' layer(base);
+@import './global/variables.css' layer(base);
+@import './global/global-styles.css' layer(base);
+
+@import './compositions/flow.css' layer(components);
+@import './compositions/cluster.css' layer(components);
+@import './compositions/grid.css' layer(components);
+@import './compositions/sidebar.css' layer(components);
+@import './compositions/switcher.css' layer(components);
+@import './compositions/wrapper.css' layer(components);
+@import './compositions/repel.css' layer(components);
+@import './compositions/fluid-grid.css' layer(components);
+
+@import './blocks/page-builder.css' layer(components);
+@import './blocks/buttons.css' layer(components);
+@import './blocks/prose.css' layer(components);
+
+@import './utilities/region.css';
+@import './utilities/hyphens.css';
+@import './utilities/wrap.css';
+@import './utilities/visually-hidden.css';
+
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* Source directives — tell Tailwind where to scan for classes */
+@source "../../resources/views/**/*";
+@source "../../resources/js/**/*";
+@source "../../content/**/*.md";
+@source "../../vendor/studio1902/**/*";
+
+@config '../js/tailwind.peak.js';
+
+@plugin "@tailwindcss/forms";
+
+/* Span utilities for fluid-grid composition.
+   Defined as @utility so Tailwind generates them on demand.
+   Cannot live inside @layer — must stay here. */
+@utility span-full {
+	grid-column: full;
+}
+
+@utility span-content {
+	grid-column: content;
+}

@@ -1,0 +1,418 @@
+/*
+  Global styles
+
+  Low-specificity, global styles that apply to the whole
+  project: https://cube.fyi/css.html
+
+  Adapted from the Complete CSS course by Andy Bell,
+  with Peak-specific additions for Alpine and Statamic.
+*/
+
+body {
+	color: var(--color-dark);
+	font-size: var(--text-step-0);
+	font-family: var(--font-base);
+	line-height: var(--leading-standard);
+	font-size-adjust: from-font;
+}
+
+/* Headings */
+
+:is(h1, h2, h3, h4) {
+	line-height: var(--leading-fine);
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: var(--text-step-4);
+	max-width: 20ch;
+}
+
+h2 {
+	font-size: var(--text-step-4);
+	max-width: 35ch;
+}
+
+h3 {
+	font-size: var(--text-step-3);
+	max-width: 35ch;
+}
+
+:is(h4, h5, h6) {
+	font-size: var(--text-step-2);
+}
+
+small {
+	font-size: var(--text-step-0);
+}
+
+/* Code */
+
+:is(code, kbd, samp) {
+	font-family: var(--font-mono);
+	padding: 0.2em 0.2em 0.05em 0.2em;
+	hyphens: none;
+	tab-size: 2;
+	text-align: left;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	box-decoration-break: clone;
+}
+
+@supports not (font-size-adjust: from-font) {
+	:is(code, kbd, samp) {
+		font-size: 0.8em;
+	}
+}
+
+pre:has(code) {
+	width: max-content;
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+pre code {
+	border: none;
+	background: none;
+	padding: 0;
+}
+
+kbd {
+	border: 1px solid;
+	padding-block-end: 0.1em;
+}
+
+var {
+	font-style: normal;
+	font-weight: var(--font-weight-medium);
+}
+
+q {
+	font-style: italic;
+}
+
+/* Lists */
+
+ul:not([class]) {
+	padding-inline-start: 1.7ch;
+	list-style-type: disc;
+}
+
+ul:not([class]) > li {
+	padding-inline-start: var(--spacing-xs);
+}
+
+:is(ol, ul):not([class]) li + * {
+	margin-block-start: var(--flow-space, var(--spacing-xs));
+}
+
+ul ::marker {
+	font-size: 0.8lh;
+}
+
+ol ::marker {
+	font-size: 1em;
+	font-weight: var(--font-weight-bold);
+}
+
+[role='list'][class],
+[role='tablist'][class] {
+	margin-block: 0;
+	padding: 0;
+}
+
+/* Definition lists */
+
+dt {
+	font-weight: var(--font-weight-medium);
+}
+
+dt + dd {
+	margin-block-start: var(--spacing-xs);
+}
+
+dd + dt {
+	margin-block-start: var(--spacing-s);
+}
+
+dd {
+	margin-inline-start: 1.5ch;
+}
+
+/* Blockquotes */
+
+blockquote {
+	margin-inline: 0;
+}
+
+blockquote footer {
+	margin-block-start: var(--spacing-s);
+	font-size: var(--text-step-0);
+}
+
+blockquote q {
+	font-style: normal;
+}
+
+/* Images and media */
+
+:is(video, iframe[src*='youtube'], iframe[src*='vimeo']) {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16/9;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+	display: block;
+}
+
+figcaption {
+	padding-block-start: 0.5em;
+	font-size: var(--text-step-0);
+	font-family: monospace;
+}
+
+/* Tables */
+
+table {
+	border: var(--stroke);
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th {
+	text-align: left;
+	font-weight: var(--font-weight-bold);
+	line-height: var(--leading-fine);
+}
+
+thead th {
+	padding-block: var(--spacing-s);
+}
+
+td,
+th {
+	padding: var(--spacing-xs) var(--spacing-s);
+}
+
+th:not(:only-of-type) {
+	border-block-end: var(--stroke);
+}
+
+th:only-of-type {
+	border-inline-end: var(--stroke);
+}
+
+:is(th, td) ~ :is(th, td) {
+	border-inline-start: var(--stroke);
+}
+
+tr + tr :is(th, td) {
+	border-block-start: var(--stroke);
+}
+
+caption {
+	caption-side: bottom;
+	margin-block-start: var(--spacing-s);
+}
+
+/* Links */
+
+a:not([class]):hover {
+	text-underline-offset: 0.2lh;
+}
+
+:is(h1, h2, h3, h4) a:not([class]) {
+	text-decoration-thickness: 0.1ex;
+	text-underline-offset: 0.2ex;
+}
+
+:is(h1, h2, h3, h4) a:not([class]):hover {
+	text-underline-offset: 0.3ex;
+}
+
+/* Focus */
+
+:focus {
+	outline-width: var(--focus-outline-width, 2px);
+	outline-offset: var(--focus-outline-offset, 3px);
+	outline-color: var(--focus-outline-color, currentColor);
+	outline-style: var(--focus-outline-style, dotted);
+}
+
+*:focus:not(:focus-visible) {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+}
+
+input:not([type="button"]),
+textarea,
+select {
+	&:focus {
+		box-shadow: none;
+		outline-width: var(--focus-form-outline-width, 3px);
+		outline-offset: var(--focus-form-outline-offset, 0);
+		outline-color: var(--focus-form-outline-color, currentColor);
+		outline-style: var(--focus-form-outline-style, solid);
+	}
+}
+
+@supports (-moz-appearance: none) {
+	:root {
+		--focus-outline-offset: 0.08em;
+	}
+}
+
+/* Selection and target */
+
+::selection,
+::target-text {
+	background-color: var(--color-primary);
+	color: var(--color-light);
+}
+
+:target {
+	scroll-margin-block: 5lh;
+}
+
+/* Horizontal rule */
+
+hr {
+	border: none;
+	border-block-start: var(--hr-stroke, var(--stroke));
+	margin-block: var(--flow-space, var(--spacing-xl));
+}
+
+/* SVG */
+
+svg:not([class]) {
+	width: auto;
+	height: 1lh;
+}
+
+svg {
+	flex-shrink: 0;
+}
+
+svg[role='img'][width][height] {
+	width: revert;
+	height: revert;
+	background: var(--color-light);
+	padding: var(--spacing-xs);
+}
+
+/* Forms */
+
+form > *:not(input[type="hidden"]) + * {
+	margin-top: var(--flow-space, 1rem);
+}
+
+:is(input, select, textarea) {
+	accent-color: var(--color-primary);
+}
+
+:is(input:not([type='checkbox'], [type='radio'], [type='color']), select, textarea) {
+	padding: 0.5em 0.8em;
+	border-radius: var(--radius-s);
+	border: var(--stroke-solid);
+	background: var(--color-neutral-50);
+	color: var(--color-dark);
+	width: 100%;
+
+	&::placeholder {
+		color: var(--color-neutral-400);
+	}
+}
+
+label {
+	line-height: var(--leading-fine);
+	font-weight: var(--font-weight-medium);
+}
+
+label::after {
+	content: '\A';
+	white-space: pre;
+}
+
+label:has(input) {
+	display: flex;
+	align-items: baseline;
+	gap: var(--spacing-s);
+	font-weight: var(--font-weight-normal);
+}
+
+label:has(input) + label:has(input) {
+	--flow-space: var(--spacing-s-m);
+}
+
+label:has(input) input {
+	transform: translateY(-0.1ex);
+}
+
+input:disabled {
+	background: var(--color-neutral-400);
+}
+
+input:disabled,
+label input:disabled + * {
+	cursor: not-allowed;
+}
+
+fieldset {
+	border: var(--stroke);
+	padding: var(--spacing-s);
+}
+
+legend {
+	font-weight: var(--font-weight-medium);
+	padding-inline: var(--spacing-xs);
+}
+
+summary {
+	font-weight: var(--font-weight-bold);
+	cursor: pointer;
+}
+
+details[open] summary {
+	margin-block-end: var(--spacing-s);
+}
+
+/* Mark */
+
+mark {
+	background-color: var(--color-primary);
+	color: var(--color-light);
+}
+
+/* Peak: Alpine cloak */
+
+[x-cloak] {
+	display: none !important;
+}
+
+/* Peak: Button cursor */
+
+button {
+	cursor: pointer;
+}
+
+/* Peak: Breakpoint debug display */
+
+.breakpoint:before {
+	display: block;
+	color: var(--color-warning);
+	text-transform: uppercase;
+	content: "-";
+}
+
+/* Peak: Link color transition */
+
+@media (prefers-reduced-motion: no-preference) {
+	a {
+		transition: color 0.3s ease-in-out;
+	}
+}

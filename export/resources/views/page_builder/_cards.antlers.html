@@ -1,0 +1,44 @@
+{{#
+    @name Cards
+    @desc The Cards page builder block.
+    @set page.page_builder.cards
+#}}
+
+<!-- /page_builder/_cards.antlers.html -->
+{{ partial:page_builder/block class="gap-y-l" }}
+    {{ if block:heading }}
+        <header class="span-content text-center">
+            {{ partial:typography/h2 :content="block:heading" }}
+        </header>
+    {{ /if }}
+
+    <ul role="list" class="span-content grid" data-layout="thirds" style="--gutter: var(--spacing-fluid-grid-gap)">
+        {{ block:cards }}
+            <li
+                class="flex flex-col gap-s justify-between items-start p-m border border-dark/10 shadow-lg rounded"
+            >
+                <div class="flex flex-col gap-2xs text-step-0">
+                    {{ if button }}
+                        {{ button }}
+                            <a class="group " {{ partial:statamic-peak-tools::snippets/button_attributes }} aria-hidden="true" tabindex="-1">
+                                {{ partial:typography/h3 color="group-hover:underline" :content="heading" }}
+                            </a>
+                        {{ /button }}
+                        {{ partial:typography/h3 class="sr-only" :content="heading" }}
+                    {{ else }}
+                        {{ partial:typography/h3 :content="heading" }}
+                    {{ /if }}
+
+                    {{ if text }}
+                        {{ partial:typography/p :content="text" }}
+                    {{ /if }}
+                </div>
+
+                {{ button }}
+                    {{ partial:components/button }}
+                {{ /button }}
+            </li>
+        {{ /block:cards }}
+    </ul>
+{{ /partial:page_builder/block }}
+<!-- End: /page_builder/_cards.antlers.html -->

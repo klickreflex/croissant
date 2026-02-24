@@ -1,0 +1,33 @@
+/*
+AUTO GRID
+Related Every Layout: https://every-layout.dev/layouts/grid/
+A flexible layout that will create an auto-fill grid with
+configurable grid item sizes.
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--spacing-s-m)): Space between each item.
+--grid-min-item-size (16rem): Minimum item size.
+--grid-placement (auto-fill): auto-fit or auto-fill.
+*/
+.grid {
+	display: grid;
+	grid-template-columns: repeat(
+		var(--grid-placement, auto-fill),
+		minmax(var(--grid-min-item-size, min(16rem, 100%)), 1fr)
+	);
+	gap: var(--gutter, var(--spacing-s-l));
+}
+
+.grid[data-layout='halves'] {
+	--grid-placement: auto-fit;
+	--grid-min-item-size: clamp(16rem, 50vw, min(33rem, 100%));
+}
+
+.grid[data-layout='thirds'] {
+	--grid-placement: auto-fit;
+	--grid-min-item-size: clamp(16rem, 33%, min(20rem, 100%));
+}
+
+.grid[data-item-height='equal'] {
+	grid-auto-rows: 1fr;
+}

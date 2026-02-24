@@ -1,0 +1,14 @@
+{
+	"title": "Viewports",
+	"description": "'min' and 'max' define the fluid clamp range. 'breakpoints' entries each become a Tailwind --breakpoint-{name} custom property.",
+	"min": 330,
+	"max": 1200,
+	"breakpoints": {
+		"xs": 390,
+		"sm": 640,
+		"md": 768,
+		"lg": 1024,
+		"xl": 1280,
+        "2xl": 1536
+	}
+}

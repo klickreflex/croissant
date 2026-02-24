@@ -1,0 +1,31 @@
+{{#
+    @name Footer
+    @desc The sites footer rendered on each page.
+#}}
+
+<!-- /layout/_footer.antlers.html -->
+<footer class="fluid-grid py-s mt-auto">
+    <div class="span-content repel" style="--gutter: var(--spacing-s)">
+        <div class="cluster text-step--2 font-bold" style="--gutter: var(--spacing-s)">
+            <span>
+                &copy; {{ configuration:copyright_since }}
+                {{ unless (now | format('Y')) == configuration:copyright_since }}
+                    - {{ now | format('Y') }}
+                    {{ /unless }}
+                {{ configuration:copyright_name ?? config:app:name }}
+            </span>
+
+            {{# Let's users reset consent when you use the consent banner. #}}
+            {{ yield:reset_consent }}
+        </div>
+
+        {{ if social_media:social_media }}
+            <div class="flex">
+                {{ social_media:social_media }}
+                    <a class="p-3xs text-dark" href="{{ prefix }}{{ handle }}" rel="noopener{{ type == 'mastodon' ?= ' me' }}" aria-label="{{ config:app:name }} {{ trans:strings.on }} {{ type | title }}" target="_blank">{{ svg :src="type" attr:class="w-[1rem] h-[1rem] overflow-visible fill-current" attr:alt="" attr:aria-hidden="true" }}</a>
+                {{ /social_media:social_media }}
+            </div>
+        {{ /if }}
+    </div>
+</footer>
+<!-- End: /layout/_footer.antlers.html -->

@@ -1,0 +1,69 @@
+{
+	"title": "Text Sizes",
+	"description": "Fluid type scale. Min and max sizes are in pixels, converted to rem via rootSize.",
+	"meta": {
+		"scaleGenerator": "https://utopia.fyi/type/calculator?c=330,18,1.175,1200,24,1.25,8,3,&s=0.75%7C0.5%7C0.25,1.5%7C2%7C3%7C4%7C6,s-l&g=s,l,xl,12"
+	},
+	"items": [
+		{
+			"name": "Step -3",
+			"min": 11.1,
+			"max": 12.29
+		},
+		{
+			"name": "Step -2",
+			"min": 13.04,
+			"max": 15.36
+		},
+		{
+			"name": "Step -1",
+			"min": 15.32,
+			"max": 19.2
+		},
+		{
+			"name": "Step 0",
+			"min": 18,
+			"max": 24
+		},
+		{
+			"name": "Step 1",
+			"min": 21.15,
+			"max": 30
+		},
+		{
+			"name": "Step 2",
+			"min": 24.85,
+			"max": 37.5
+		},
+		{
+			"name": "Step 3",
+			"min": 29.2,
+			"max": 46.88
+		},
+		{
+			"name": "Step 4",
+			"min": 34.31,
+			"max": 58.59
+		},
+		{
+			"name": "Step 5",
+			"min": 40.31,
+			"max": 73.24
+		},
+		{
+			"name": "Step 6",
+			"min": 47.37,
+			"max": 91.55
+		},
+		{
+			"name": "Step 7",
+			"min": 55.66,
+			"max": 114.44
+		},
+		{
+			"name": "Step 8",
+			"min": 65.4,
+			"max": 143.05
+		}
+	]
+}

@@ -1,0 +1,18 @@
+/*
+CLUSTER
+More info: https://every-layout.dev/layouts/cluster/
+A layout that lets you distribute items with consistent
+spacing, regardless of their size.
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--spacing-s-m)): Space between each item.
+--cluster-horizontal-alignment (flex-start): Horizontal alignment.
+--cluster-vertical-alignment (center): Vertical alignment.
+*/
+.cluster {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gutter, var(--spacing-s-m));
+	justify-content: var(--cluster-horizontal-alignment, flex-start);
+	align-items: var(--cluster-vertical-alignment, center);
+}

@@ -1,0 +1,17 @@
+{{#
+    @name Prose
+    @desc Wrapper for simple Bard fields without sets. Applies flow rhythm and prose styling.
+    @param as The wrapping element. Defaults to `div`.
+    @param class Add custom CSS classes.
+#}}
+
+<!-- /typography/_prose.antlers.html -->
+<{{ as or 'div' }}
+    class="
+        flow prose
+        {{ class }}
+    "
+>
+    {{ slot }}
+</{{ as or 'div' }}>
+<!-- End: /typography/_prose.antlers.html -->

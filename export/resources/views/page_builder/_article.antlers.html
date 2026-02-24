@@ -1,0 +1,13 @@
+{{#
+    @name Article
+    @desc The article page builder block. Sets render as grid children with their own templates. Text sets get prose styling via _text.antlers.html.
+    @set page.page_builder.article
+#}}
+
+<!-- /page_builder/_article.antlers.html -->
+{{ partial:page_builder/block class="flow" }}
+    {{ article }}
+        {{ partial src="components/{type}" }}
+    {{ /article }}
+{{ /partial:page_builder/block }}
+<!-- End: /page_builder/_article.antlers.html -->

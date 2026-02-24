@@ -1,0 +1,30 @@
+export_paths:
+  - resources/css
+  - resources/design-tokens
+  - scripts
+  - plugins
+  - resources/views
+  - resources/blueprints
+  - resources/fieldsets
+  - resources/forms
+  - resources/js
+  - resources/svg
+  - resources/users
+  - content
+  - config/statamic
+  - package.json
+  - vite.config.js
+  - config/filesystems.php
+  - app/Listeners
+  - app/Policies
+  - .env.example
+  - .editorconfig
+  - public/page_builder
+  - public/favicons
+  - public/social_images
+  - public/images
+  - public/files
+  - public/assets
+dependencies:
+  studio1902/statamic-peak-seo: ^10.0
+  studio1902/statamic-peak-tools: ^9.0

@@ -1,0 +1,42 @@
+{
+	"title": "Fonts",
+	"description": "Font family stacks. Base maps to sans-serif system fonts.",
+	"items": [
+		{
+			"name": "Base",
+			"value": [
+				"ui-sans-serif",
+				"system-ui",
+				"sans-serif",
+				"Apple Color Emoji",
+				"Segoe UI Emoji",
+				"Segoe UI Symbol",
+				"Noto Color Emoji"
+			]
+		},
+		{
+			"name": "Serif",
+			"value": [
+				"ui-serif",
+				"Georgia",
+				"Cambria",
+				"Times New Roman",
+				"Times",
+				"serif"
+			]
+		},
+		{
+			"name": "Mono",
+			"value": [
+				"ui-monospace",
+				"SFMono-Regular",
+				"Menlo",
+				"Monaco",
+				"Consolas",
+				"Liberation Mono",
+				"Courier New",
+				"monospace"
+			]
+		}
+	]
+}

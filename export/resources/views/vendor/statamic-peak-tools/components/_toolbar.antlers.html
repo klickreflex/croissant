@@ -1,0 +1,54 @@
+{{#
+    @name Peak toolbar
+    @desc The Peak toolbar component displaying debug information.
+    Ejected from Peak to align with CUBE token system.
+#}}
+
+<!-- statamic-peak-tools::components/_toolbar.antlers.html -->
+{{ if environment == 'local' }}
+    {{ nocache }}
+        <aside
+            class="fixed z-50 bottom-3xs right-3xs flex text-step--2 divide-x divide-white shadow-sm divide-solid motion-safe:transition-opacity hover:opacity-100 has-[button:focus,a:focus]:opacity-100"
+            x-show="!toolbarTrashed"
+            x-data="{
+                toolbarVisible: $persist(true).as('toolbarVisible'),
+                toolbarTrashed: $persist(false).using(sessionStorage).as('toolbarTrashed')
+            }"
+            x-ref="toolbar"
+            :class="{ 'opacity-100': toolbarVisible, 'opacity-0': !toolbarVisible }"
+            x-cloak
+        >
+            <span title="Current Tailwind breakpoint" class="flex items-center p-2xs gap-3xs text-warning bg-warning-light">
+                {{ svg:breakpoint attr:class="w-[1rem] h-[1rem] fill-current" attr:alt="" attr:aria-hidden="true" }}
+                <span class="breakpoint"></span>
+            </span>
+
+            {{ if logged_in }}
+                <a href="{{ edit_url }}" title="Edit entry in CP" aria-label="Edit entry in CP" target="_blank" class="flex items-center p-2xs gap-3xs text-info bg-info-light hover:bg-neutral-200">
+                    {{ svg:edit attr:class="w-[1rem] h-[1rem] fill-current" attr:alt="" attr:aria-hidden="true" }}
+                    <span>Edit</span>
+                </a>
+            {{ /if }}
+
+            <button
+                @click="toolbarVisible = !toolbarVisible"
+                title="Toggle toolbar visibility" aria-label="Toggle toolbar visibility" class="flex items-center justify-center px-2xs bg-info-light hover:bg-neutral-200"
+            >
+                <div x-show="!toolbarVisible">
+                    {{ svg:invisible attr:class="w-[1.25rem] h-[1.25rem] fill-current" attr:alt="" attr:aria-hidden="true" }}
+                </div>
+                <div x-show="toolbarVisible">
+                    {{ svg:visible attr:class="w-[1.25rem] h-[1.25rem] fill-current" attr:alt="" attr:aria-hidden="true" }}
+                </div>
+            </button>
+
+            <button
+                @click="toolbarTrashed = true"
+                title="Remove toolbar for the duration of the current session" aria-label="Remove toolbar for the duration of the current session" class="flex items-center justify-center px-2xs bg-info-light hover:bg-neutral-200"
+            >
+                {{ svg:trash attr:class="w-[1rem] h-[1rem] text-warning stroke-current" attr:alt="" attr:aria-hidden="true" }}
+            </button>
+        </aside>
+    {{ /nocache }}
+{{ /if }}
+<!-- End: statamic-peak-tools::components/_toolbar.antlers.html -->

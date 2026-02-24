@@ -1,0 +1,9 @@
+{
+    "name": "klickreflex/croissant",
+    "extra": {
+        "statamic": {
+            "name": "Croissant",
+            "description": "A CUBE CSS starter kit for Statamic, built on Peak foundations."
+        }
+    }
+}
