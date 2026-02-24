@@ -5,7 +5,7 @@
 #}}
 
 <!-- statamic-peak-tools::navigation/_skip_links.antlers.html -->
-<div class="z-50 text-step--2 font-bold text-white [&_a]:fixed [&_a]:px-s [&_a]:py-2xs [&_a]:-translate-y-24 [&_a]:opacity-0 [&_a]:top-xs [&_a]:left-l [&_a]:bg-primary [&_a:focus]:translate-y-0 [&_a:focus]:opacity-100 [&_a]:outline-primary motion-safe:[&_a]:transition-transform {{ class }}">
+<div class="skip-links {{ class }}">
     {{ if defaults || defaults === null }}
         <a href="#content">{{ trans:strings.skip_to_content }}</a>
     {{ /if }}

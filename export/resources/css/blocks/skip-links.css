@@ -1,0 +1,27 @@
+.skip-links {
+	z-index: 50;
+	font-size: var(--text-step--2);
+	font-weight: var(--font-weight-bold);
+	color: var(--color-white);
+
+	a {
+		position: fixed;
+		top: var(--spacing-xs);
+		left: var(--spacing-l);
+		padding-block: var(--spacing-2xs);
+		padding-inline: var(--spacing-s);
+		background-color: var(--color-primary);
+		outline-color: var(--color-primary);
+		transform: translateY(calc(-100% - var(--spacing-xs) - var(--spacing-2xs)));
+		opacity: 0;
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+
+		&:focus {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+}
