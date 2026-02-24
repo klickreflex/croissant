@@ -1,5 +1,6 @@
 {
     "name": "klickreflex/croissant",
+    "license": "GPL-3.0-or-later",
     "extra": {
         "statamic": {
             "name": "Croissant",
