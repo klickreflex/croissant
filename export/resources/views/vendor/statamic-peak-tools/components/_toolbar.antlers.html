@@ -8,7 +8,7 @@
 {{ if environment == 'local' }}
     {{ nocache }}
         <aside
-            class="fixed z-50 bottom-3xs right-3xs flex text-step--2 divide-x divide-white shadow-sm divide-solid motion-safe:transition-opacity hover:opacity-100 has-[button:focus,a:focus]:opacity-100"
+            class="fixed z-50 bottom-3xs right-3xs flex gap-x-px text-step--3 shadow-sm motion-safe:transition-opacity hover:opacity-100 has-[button:focus,a:focus]:opacity-100"
             x-show="!toolbarTrashed"
             x-data="{
                 toolbarVisible: $persist(true).as('toolbarVisible'),
