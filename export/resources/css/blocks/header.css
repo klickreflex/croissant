@@ -3,6 +3,6 @@
 }
 
 .header .logo-link {
-	width: var(--spacing-3xl---4xl);
+	width: var(--spacing-3xl-4xl);
     padding-block: var(--spacing-s);
 }

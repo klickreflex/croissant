@@ -11,107 +11,107 @@
 			"max": 1
 		},
 		{
-			"name": "3XS",
+			"name": "3xs",
 			"min": 5,
 			"max": 6
 		},
 		{
-			"name": "2XS",
+			"name": "2xs",
 			"min": 9,
 			"max": 12
 		},
 		{
-			"name": "XS",
+			"name": "xs",
 			"min": 14,
 			"max": 18
 		},
 		{
-			"name": "S",
+			"name": "s",
 			"min": 18,
 			"max": 24
 		},
 		{
-			"name": "M",
+			"name": "m",
 			"min": 27,
 			"max": 36
 		},
 		{
-			"name": "L",
+			"name": "l",
 			"min": 36,
 			"max": 48
 		},
 		{
-			"name": "XL",
+			"name": "xl",
 			"min": 54,
 			"max": 72
 		},
 		{
-			"name": "2XL",
+			"name": "2xl",
 			"min": 72,
 			"max": 96
 		},
 		{
-			"name": "3XL",
+			"name": "3xl",
 			"min": 108,
 			"max": 144
 		},
 		{
-			"name": "4XL",
+			"name": "4xl",
 			"min": 144,
 			"max": 192
 		},
 		{
-			"name": "3XS - 2XS",
+			"name": "3xs-2xs",
 			"min": 5,
 			"max": 12
 		},
 		{
-			"name": "2XS - XS",
+			"name": "2xs-xs",
 			"min": 9,
 			"max": 18
 		},
 		{
-			"name": "XS - S",
+			"name": "xs-s",
 			"min": 14,
 			"max": 24
 		},
 		{
-			"name": "S - M",
+			"name": "s-m",
 			"min": 18,
 			"max": 36
 		},
 		{
-			"name": "M - L",
+			"name": "m-l",
 			"min": 27,
 			"max": 48
 		},
 		{
-			"name": "L - XL",
+			"name": "l-xl",
 			"min": 36,
 			"max": 72
 		},
 		{
-			"name": "XL - 2XL",
+			"name": "xl-2xl",
 			"min": 54,
 			"max": 96
 		},
 		{
-			"name": "2XL - 3XL",
+			"name": "2xl-3xl",
 			"min": 72,
 			"max": 144
 		},
 		{
-			"name": "3XL - 4XL",
+			"name": "3xl-4xl",
 			"min": 108,
 			"max": 192
 		},
 		{
-			"name": "S - L",
+			"name": "s-l",
 			"min": 18,
 			"max": 48
 		},
 		{
-			"name": "S - XL",
+			"name": "s-xl",
 			"min": 18,
 			"max": 72
 		}
