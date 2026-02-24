@@ -1,5 +1,6 @@
 <?php
 
+use App\Console\Commands\PostInstall\CollectAvailableLangLocales;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Prompts\Prompt;
@@ -14,11 +15,16 @@ use function Laravel\Prompts\info;
 use function Laravel\Prompts\search;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\spin;
+use function Laravel\Prompts\suggest;
 use function Laravel\Prompts\text;
 use function Laravel\Prompts\warning;
 
 class StarterKitPostInstall
 {
+    public $registerCommands = [
+        CollectAvailableLangLocales::class,
+    ];
+
     protected string $env = '';
 
     protected string $system = '';
@@ -26,6 +32,8 @@ class StarterKitPostInstall
     protected string $contact = '';
 
     protected string $sites = '';
+
+    protected Collection $availableLanguages;
 
     protected bool $interactive = true;
 
@@ -39,7 +47,9 @@ class StarterKitPostInstall
         $this->excludeFormsFolderFromGit();
         $this->setupComposerUpdateWorkflow();
         $this->installNodeDependencies();
+        $this->installTranslations();
         $this->writeFiles();
+        $this->cleanUp();
         $this->finish();
     }
 
@@ -366,6 +376,120 @@ class StarterKitPostInstall
 
         if ($this->sites) {
             $files->put(base_path('resources/sites.yaml'), $this->sites);
+        }
+    }
+
+    protected function installTranslations(): void
+    {
+        if (! confirm(label: 'Do you want to install missing Laravel translation files?', default: $this->interactive)) {
+            return;
+        }
+
+        if (! $this->installLaravelLang()) {
+            error('Could not install Laravel Lang.');
+
+            return;
+        }
+
+        if (! $this->collectAvailableLanguages()) {
+            error('Could not collect available languages.');
+
+            return;
+        }
+
+        $this->selectLanguagesToInstall();
+    }
+
+    protected function installLaravelLang(): bool
+    {
+        return $this->run(
+            command: 'composer require laravel-lang/common --dev',
+            processingMessage: 'Installing Laravel Lang...',
+            successMessage: 'Laravel Lang installed.',
+        );
+    }
+
+    protected function collectAvailableLanguages(): bool
+    {
+        $command = 'php artisan statamic:peak:collect-available-lang-locales';
+        $process = new Process(explode(' ', $command));
+
+        try {
+            $process->mustRun();
+            $this->availableLanguages = collect(json_decode($process->getOutput(), true, 512, JSON_THROW_ON_ERROR));
+
+            return true;
+        } catch (\Exception) {
+            return false;
+        }
+    }
+
+    protected function selectLanguagesToInstall(): void
+    {
+        info('Enter the handles of the languages you want to install. Leave empty and press enter when you\'re done.');
+
+        $installedLanguages = collect();
+
+        do {
+            if (($handle = $this->selectLanguageToInstall($installedLanguages)) && $this->installLanguage($handle)) {
+                $installedLanguages->push($handle);
+            }
+        } while ($handle);
+    }
+
+    protected function selectLanguageToInstall(Collection $installedLanguages): string
+    {
+        return suggest(
+            label: 'Handle of language (submit empty when you\'re done)',
+            options: fn ($value) => $this->availableLanguages
+                ->filter(fn (string $language) => Str::contains($language, $value, true) && ! $installedLanguages->contains($language))
+                ->values()
+                ->toArray(),
+            placeholder: 'en',
+            validate: fn (string $value) => match (true) {
+                $value && ! $this->availableLanguages->contains($value) => 'Not supported by Laravel Lang.',
+                $value && $installedLanguages->contains($value) => "Language \"{$value}\" already installed.",
+                default => null,
+            },
+            hint: $installedLanguages->isNotEmpty() ? 'Installed: '.$installedLanguages->join(', ', ' and ') : '',
+        );
+    }
+
+    protected function installLanguage(string $handle): bool
+    {
+        return $this->run(
+            command: "php artisan lang:add {$handle}",
+            processingMessage: "Installing language \"{$handle}\"...",
+            successMessage: "Language \"{$handle}\" installed.",
+            errorMessage: "Installation of language \"{$handle}\" failed.",
+        );
+    }
+
+    protected function cleanUp(): void
+    {
+        $this->withSpinner(
+            fn () => $this->removePostInstallCommands(),
+            'Removing post install commands...',
+            'Post install commands removed.',
+        );
+    }
+
+    protected function removePostInstallCommands(): void
+    {
+        Storage::build([
+            'driver' => 'local',
+            'root' => app_path(),
+        ])->deleteDirectory('Console/Commands/PostInstall');
+
+        usleep(500000);
+    }
+
+    protected function withSpinner(callable $callback, string $processingMessage = '', string $successMessage = ''): void
+    {
+        spin($callback, $processingMessage);
+
+        if ($successMessage) {
+            info("[✓] $successMessage");
         }
     }
 
