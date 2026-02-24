@@ -52,4 +52,4 @@ The Vite dev server automatically generates `theme.css` from your design tokens 
 
 ## License
 
-MIT
+Croissant is licensed under the [GNU General Public License v3.0](LICENSE). Statamic itself is commercial software and has its [own license](https://statamic.dev/licensing).
