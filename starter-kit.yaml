@@ -11,15 +11,20 @@ export_paths:
   - resources/svg
   - resources/users
   - resources/sites.yaml
+  - lang
   - content
   - config/statamic
   - package.json
   - vite.config.js
   - config/filesystems.php
+  - app/Console/Commands/PostInstall/CollectAvailableLangLocales.php
   - app/Listeners
   - app/Policies
+  - .gitignore
   - .env.example
   - .editorconfig
+  - public/robots.txt
+  - public/visuals
   - public/page_builder
   - public/favicons
   - public/social_images
