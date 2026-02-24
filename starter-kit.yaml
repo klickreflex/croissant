@@ -20,9 +20,9 @@ export_paths:
   - app/Console/Commands/PostInstall/CollectAvailableLangLocales.php
   - app/Listeners
   - app/Policies
-  - .gitignore
   - .env.example
   - .editorconfig
+  - .gitignore
   - public/robots.txt
   - public/visuals
   - public/page_builder
