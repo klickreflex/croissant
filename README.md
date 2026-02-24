@@ -34,13 +34,14 @@ The CUBE CSS integration is based on [stvrhm/cube-boilerplate](https://github.co
 statamic new my-site klickreflex/croissant
 ```
 
-After installation, generate the theme CSS from design tokens:
+After installation:
 
 ```bash
 npm install
-npm run theme
 npm run dev
 ```
+
+The Vite dev server automatically generates `theme.css` from your design tokens on startup and regenerates it whenever you change a token JSON file. A standalone `npm run theme` script is available for CI or one-off generation outside of Vite.
 
 ## Credits
 
